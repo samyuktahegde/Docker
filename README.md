@@ -1,7 +1,7 @@
 Docker Setup Steps on CentOS 7
 First run,
 yum update
-Then create a file dockerrepo.repo in /etc/yum.repos.d/ with the following contents:
+Then create a file dockerrepo.repo in /etc/yum.repos.d/ with the following contents::
 
 [dockerrepo] 
 name=Docker Repository 
