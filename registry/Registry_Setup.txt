@@ -1,0 +1,18 @@
+To set up docker registry, log into the host where the docker registry is to be set up. The registry image has to be pulled from the docker hub.
+docker pull registry:2
+To start the registry type the command
+docker run -d --name registry -e SEARCH_BACKEND=SQLAlchemy -e REGISTRY_STORAGE_DELETE_ENABLED=true -p 5000:5000 registry:2
+
+The first step is to build the images.
+The next step is to tag the images.
+Then the images are pushed to the registry
+
+To view the images pushed to the registry, navigate to http://161.85.111.173:5000/v2/_catalog 
+
+In order for docker-compose to pull the images from the registry, the /lib/system/system/docker.service has to be modified.
+Comment the existing ExecStart and add a new ExecStart
+
+#ExecStart=/usr/bin/dockerd
+ExecStart=/usr/bin/dockerd --insecure-registry=registry.net:5000
+
+Add the ip address of registry.net in /etc/hosts 
