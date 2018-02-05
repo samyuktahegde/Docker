@@ -1,0 +1,7 @@
+First create a network
+
+docker network create net1
+
+The network created can be checked using:
+
+docker network ls
