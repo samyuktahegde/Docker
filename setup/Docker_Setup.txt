@@ -1,0 +1,23 @@
+First,
+yum update
+Create a file dockerrepo.repo in /etc/yum.repos.d/
+The file can be found in the current directory
+
+yum install docker-engine
+systemctl enable docker.service
+systemctl start docker
+
+We need to enable Docker to work under network proxy. So in the file /lib/systemd/system/docker.service
+Add the following lines
+Environment="HTTP_PROXY=http://xx.xx.xx.xx:xxxx/ HTTPS_PROXY=http://xx.xx.xx.xx:xxxx/"
+
+Then restart docker service
+systemctl restart docker
+
+Now install docker compose
+export http_proxy=http://xx.xx.xx.xx:xxxx
+export https_proxy=http://xx.xx.xx.xx:xxxx
+curl -L https://github.com/docker/compose/releases/download/1.8.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+
+
